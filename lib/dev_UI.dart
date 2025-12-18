@@ -28,7 +28,7 @@ class _NotesScreenState extends State<NotesScreen> {
     notesFuture = notes.orderBy('createdAt', descending: true).get();
   }
 
-  // CREATE
+
   Future<void> addNote() async {
     await notes.add({
       'title': titleCtrl.text,
@@ -41,7 +41,7 @@ class _NotesScreenState extends State<NotesScreen> {
     setState(_loadNotes);
   }
 
-  // UPDATE
+
   Future<void> updateNote(String id) async {
     await notes.doc(id).update({
       'title': titleCtrl.text,
@@ -53,13 +53,11 @@ class _NotesScreenState extends State<NotesScreen> {
     setState(_loadNotes);
   }
 
-  // DELETE
   Future<void> deleteNote(String id) async {
     await notes.doc(id).delete();
     setState(_loadNotes);
   }
 
-  // Bottom Sheet (Keyboard Safe)
   void openSheet({DocumentSnapshot? note}) {
     if (note != null) {
       final data = note.data() as Map<String, dynamic>;
@@ -103,7 +101,6 @@ class _NotesScreenState extends State<NotesScreen> {
     );
   }
 
-  // READ (FutureBuilder)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
